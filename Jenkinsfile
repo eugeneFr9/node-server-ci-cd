@@ -11,15 +11,15 @@ pipeline {
    }
 
    stages {
-      stage('Preparation') {
-         steps {
-            cleanWs()
-            git credentialsId: 'GitHub', url: "https://github.com/${ORGANIZATION_NAME}/${SERVICE_NAME}"
-         }
-      }
+        stage('Cloning our Git') { 
+            steps { 
+
+                git 'https://github.com/genegr88/node-server-ci-cd' 
+            }
+        } 
       stage('Build') {
          steps {
-            sh 'echo hello'
+            'echo hello'
          }
       }
 

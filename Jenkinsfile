@@ -4,6 +4,7 @@ pipeline {
    environment {
 
      SERVICE_NAME = 'node-server'
+     registry = "evgenii88/node-server"
      REPOSITORY_TAG="${DOCKERHUB}/${SERVICE_NAME}:${BUILD_ID}"
      registryCredential = 'dockerhub'
      dockerImage = ''
@@ -25,7 +26,7 @@ pipeline {
    stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build ${REPOSITORY_TAG}
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
       }
     }

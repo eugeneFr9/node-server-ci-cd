@@ -3,17 +3,17 @@ pipeline {
 
    environment {
 
-     SERVICE_NAME = "node-server"
+     SERVICE_NAME = 'node-server'
      REPOSITORY_TAG="${DOCKERHUB}/${SERVICE_NAME}:${BUILD_ID}"
-     registryCredential = "dockerhub"
-     dockerImage = ""
+     registryCredential = 'dockerhub'
+     dockerImage = ''
    }
 
    stages {
       stage('Preparation') {
          steps {
             cleanWs()
-            git credentialsId: 'GitHub', url: "git@github.com:genegr88/node-server-ci-cd.git"
+            git 'git@github.com:genegr88/node-server-ci-cd.git'
          }
       }
    stage('Build') {

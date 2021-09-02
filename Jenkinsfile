@@ -13,7 +13,7 @@ pipeline {
       stage('Preparation') {
          steps {
             cleanWs()
-            git 'git@github.com:genegr88/node-server-ci-cd.git'
+            git([url: 'https://github.com/genegr88/node-server-ci-cd.git', credentialsId: 'GitHub'])
          }
       }
    stage('Build') {

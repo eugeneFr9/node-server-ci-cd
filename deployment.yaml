@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: nodongo
-        image: zarakmughal/nodejs-starter:1.0
+        image: evgenii88/node-server:latest
         ports:
         - containerPort: 3000
 

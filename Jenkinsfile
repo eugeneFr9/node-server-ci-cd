@@ -2,12 +2,11 @@ pipeline {
    agent any
 
    environment {
-     // You must set the following environment variables
-     // ORGANIZATION_NAME
-     // YOUR_DOCKERHUB_USERNAME (it doesn't matter if you don't have one)
 
      SERVICE_NAME = "node-server"
      REPOSITORY_TAG="${DOCKERHUB}/${SERVICE_NAME}:${BUILD_ID}"
+     registryCredential = ‘dockerhub’
+     dockerImage = ''
    }
 
    stages {
@@ -17,17 +16,29 @@ pipeline {
             git credentialsId: 'GitHub', url: "https://github.com/${ORGANIZATION_NAME}/${SERVICE_NAME}"
          }
       }
-      stage('Build') {
+   stage('Build') {
          steps {
             echo 'Hellooooooo'
          }
       }
 
-      stage('Build and Push Image') {
-         steps {
-           sh 'docker image build -t ${REPOSITORY_TAG} .'
-         }
+   stage('Building image') {
+      steps{
+        script {
+          dockerImage = docker.build ${REPOSITORY_TAG}
+        }
       }
+    }
+
+    stage('Deploy Image') {
+      steps{    
+         script {
+            docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+      }
+    }
+  }
+    }
 
       stage('Deploy to Cluster') {
           steps {

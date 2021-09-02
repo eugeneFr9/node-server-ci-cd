@@ -5,8 +5,8 @@ pipeline {
 
      SERVICE_NAME = "node-server"
      REPOSITORY_TAG="${DOCKERHUB}/${SERVICE_NAME}:${BUILD_ID}"
-     registryCredential = ‘dockerhub’
-     dockerImage = ''
+     registryCredential = "dockerhub"
+     dockerImage = ""
    }
 
    stages {

@@ -13,12 +13,12 @@ pipeline {
       stage('Preparation') {
          steps {
             cleanWs()
-            git credentialsId: 'GitHub', url: "https://github.com/${ORGANIZATION_NAME}/${SERVICE_NAME}"
+            git credentialsId: 'GitHub', url: "git@github.com:genegr88/node-server-ci-cd.git"
          }
       }
    stage('Build') {
          steps {
-            echo 'Hellooooooo'
+            echo 'Buidling.....'
          }
       }
 

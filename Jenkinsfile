@@ -13,7 +13,7 @@ pipeline {
       stage('Preparation') {
          steps {
             cleanWs()
-            git "https://github.com/${ORGANIZATION_NAME}/${SERVICE_NAME}"
+            git credentialsId: 'GitHub', url: "https://github.com/${ORGANIZATION_NAME}/${SERVICE_NAME}"
          }
       }
    stage('Build') {
